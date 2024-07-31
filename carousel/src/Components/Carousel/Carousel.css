@@ -1,0 +1,4 @@
+.componentContainer{
+    display: flex;
+    flex-direction: row;
+}
