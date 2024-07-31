@@ -1,0 +1,24 @@
+.buttonHolder{
+    border: 2px solid gray;
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    color: black
+}
+.buttonHolder:hover{
+    border: 2px solid red;
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    color: red
+}
+.buttonHolderLiked{
+    border: 2px solid red;
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    color: red
+}
