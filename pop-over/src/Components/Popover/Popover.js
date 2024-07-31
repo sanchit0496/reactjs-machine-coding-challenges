@@ -15,6 +15,7 @@ const Popover = () => {
       {showBody ? (
         <div className="popoverContainer">
           <>
+          <div className="triangle"></div>
             <div className="popoverHeader">Header</div>
             <div className="popoverBody">The content is added here</div>
           </>
