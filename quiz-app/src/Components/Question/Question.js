@@ -51,43 +51,59 @@ const Question = () => {
       setCurrentScore((prev) => prev + 1);
     }
   };
-  console.log("currentScore", currentScore);
+  
   const handleCompleteClick = () => {
     setGameComplete(true);
   };
 
+  const handleGameRestart = () => {
+    setGameComplete(false)
+    setActiveQuestionIndex(0)
+    setCurrentScore(0)
+    setClickedOption("")
+  }
+
   return (
-    <div>
-      <div className="quiz-question">
+    <div className="game-holder">
+        {gameComplete ? <span>Your Score: {currentScore}</span> :
+            <>
+      <div className="question-holder">
         <strong>Question</strong>
         <br />
         {questions[activeQuestionIndex].question}
       </div>
-      {questions[activeQuestionIndex].options.map((option) => {
-        return (
-          <>
-            <div
-              className="quiz-options"
-              style={{
-                backgroundColor: clickedOption === option ? "grey" : "",
-              }}
-              onClick={() => handleOptionSelect(option)}
-            >
-              {option}
-            </div>
-          </>
-        );
-      })}
+      <div className="option-holder">
+        {questions[activeQuestionIndex].options.map((option) => {
+          return (
+            <>
+              <div
+                className="quiz-options"
+                style={{
+                  backgroundColor: clickedOption === option ? "grey" : "",
+                }}
+                onClick={() => handleOptionSelect(option)}
+              >
+                {option}
+              </div>
+            </>
+          );
+        })}
+      </div>
+      </>
+      }
       <div className="button-holder">
-        <button onClick={handlePrevClick} disabled={activeQuestionIndex === 0}>
+        {!gameComplete && <button onClick={handlePrevClick} disabled={activeQuestionIndex === 0}>
           Prev
-        </button>
-        {activeQuestionIndex !== questions.length - 1 && (
+        </button>}
+        {activeQuestionIndex !== questions.length - 1 && !gameComplete && (
           <button onClick={handleNextClick}>Next</button>
         )}
-        {activeQuestionIndex === questions.length - 1 && (
+        {activeQuestionIndex === questions.length - 1 && !gameComplete && (
           <button onClick={handleCompleteClick}>Complete Quiz</button>
         )}
+        {
+            gameComplete && <button onClick={handleGameRestart}>Restart</button>
+        }
       </div>
     </div>
   );
