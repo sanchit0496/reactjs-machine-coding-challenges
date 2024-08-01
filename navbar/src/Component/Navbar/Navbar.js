@@ -14,13 +14,11 @@ const Navbar = () => {
   ];
 
   const handleClick = (clickedId) => {
-    console.log("clickedId", clickedId);
     setClickedItemId(clickedId);
   };
 
   const handleSandwichClick = (e) => {
     e.stopPropagation()
-    console.log('clicked')
     setSandwichClicked(!sandwichClicked)
   }
 
@@ -28,10 +26,8 @@ const Navbar = () => {
     e.stopPropagation()
     setClickedItemId(clickedId);
     setSandwichClicked(false)
-    console.log('clicked')
   }
   
-
   const getSandwichOptions = () => {
     let array = []
     data.map((item) => {
