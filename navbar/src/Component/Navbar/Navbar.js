@@ -47,6 +47,7 @@ const Navbar = () => {
           key={item.id}
           id={item.id}
           className="sandwichOption"
+          style={{backgroundColor: item.id === clickedItemId ? 'lightgrey' : 'whites'}}
           onClick={(e) => handleOptionClick(e, item.id)}
         >
           {item.title}
