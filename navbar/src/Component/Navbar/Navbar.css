@@ -1,0 +1,10 @@
+.navbarContainer{
+    width: 100%;
+    background-color: lightcoral;
+    display: flex;
+    align-items: left;
+    padding: 10px
+}
+.navbarOptions{
+    padding: 5px
+}
