@@ -4,6 +4,7 @@
     padding: 10px;
     display: flex;
     flex-direction: flex-start;
+    height: auto;
 }
 nav{
     display: flex;
@@ -18,6 +19,8 @@ nav{
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .sandwichLayer{
     height: 4px;
@@ -25,6 +28,16 @@ nav{
     background-color: black;
     margin: 4px;
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
+    flex-direction: column;    
+}
+.sandwichOptionContainer{
+    position: absolute;
+    margin-top: 12%;
+}
+.sandwichOption{
+ border: 1px solid gray;
+ padding: 5px;   
+}
+.sandwichOption:hover{
+    background-color: whitesmoke;
 }

@@ -3,6 +3,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const [clickedItemId, setClickedItemId] = useState(0);
+    const [sandwichClicked, setSandwichClicked] = useState(false)
 
   const data = [
     { id: "option01", title: "Option 01" },
@@ -17,14 +18,42 @@ const Navbar = () => {
     setClickedItemId(clickedId);
   };
 
+  const handleSandwichClick = (e) => {
+    e.stopPropagation()
+    console.log('clicked')
+    setSandwichClicked(!sandwichClicked)
+  }
+
+  const handleOptionClick = (e, clickedId) => {
+    e.stopPropagation()
+    setClickedItemId(clickedId);
+    setSandwichClicked(false)
+    console.log('clicked')
+  }
+  
+
+  const getSandwichOptions = () => {
+    let array = []
+    data.map((item) => {
+        array.push(
+            <div id = {item.id} className="sandwichOption" onClick={(e) => handleOptionClick(e, item.id)}>{item.title}</div>
+        )
+    })
+    return array
+  }
+
   return (
     <div className="navbarContainer">
       <nav>
-        <div className="sandwichContainer">
+        <div className="sandwichContainer" onClick={(e) => handleSandwichClick(e)}>
           <div className="sandwichLayer"></div>
           <div className="sandwichLayer"></div>
           <div className="sandwichLayer"></div>
+          <div className="sandwichOptionContainer">
+          {sandwichClicked && getSandwichOptions()}
+          </div>
         </div>
+
         {data.map((item) => (
           <div
             key={item.id}
