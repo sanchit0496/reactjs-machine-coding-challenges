@@ -1,11 +1,30 @@
 .navbarContainer{
     width: 100%;
     background-color: lightcoral;
+    padding: 10px;
     display: flex;
-    align-items: left;
-    padding: 10px
+    flex-direction: flex-start;
+}
+nav{
+    display: flex;
+    flex-direction: row;
 }
 .navbarOptions{
     padding: 5px;
     cursor: pointer;
+    margin: auto 5px auto 25px;
+}
+.sandwichContainer{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.sandwichLayer{
+    height: 4px;
+    width: 40px;
+    background-color: black;
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
 }
