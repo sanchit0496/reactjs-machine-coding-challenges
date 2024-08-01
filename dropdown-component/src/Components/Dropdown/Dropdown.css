@@ -1,0 +1,14 @@
+.componentTile{
+    width: 35%;
+    margin: 25px;
+}
+.componentHeader{
+    background-color: lightgrey;
+    cursor: pointer;
+}
+.componentOption{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
