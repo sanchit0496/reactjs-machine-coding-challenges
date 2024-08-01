@@ -51,16 +51,16 @@ const Question = () => {
       setCurrentScore((prev) => prev + 1);
     }
   };
-console.log('currentScore', currentScore)
+  console.log("currentScore", currentScore);
   const handleCompleteClick = () => {
     setGameComplete(true);
   };
 
   return (
-    
     <div>
-      <div>
-        Question <br />
+      <div className="quiz-question">
+        <strong>Question</strong>
+        <br />
         {questions[activeQuestionIndex].question}
       </div>
       {questions[activeQuestionIndex].options.map((option) => {
@@ -68,7 +68,9 @@ console.log('currentScore', currentScore)
           <>
             <div
               className="quiz-options"
-              style={{backgroundColor: clickedOption === option ? 'grey': ''}}
+              style={{
+                backgroundColor: clickedOption === option ? "grey" : "",
+              }}
               onClick={() => handleOptionSelect(option)}
             >
               {option}

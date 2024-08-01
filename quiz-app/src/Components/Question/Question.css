@@ -6,3 +6,9 @@
     padding: 5px;
     cursor: pointer;
 }
+.quiz-question{
+    border: 2px solid grey;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px auto 20px auto;
+}
