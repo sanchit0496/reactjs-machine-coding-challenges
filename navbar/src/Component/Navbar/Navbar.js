@@ -6,6 +6,14 @@ const Navbar = () => {
 
     const [clickedItemId, setClickedItemId] = useState(0)
 
+    const data = [
+        {id: 'option01', title: 'Option 01'},
+        {id: 'option02', title: 'Option 02'},
+        {id: 'option03', title: 'Option 03'},
+        {id: 'option04', title: 'Option 04'},
+        {id: 'option05', title: 'Option 05'}
+    ]
+
     const handleClick = (clickedId) => {
         console.log('clickedId', clickedId)
         setClickedItemId(clickedId)
@@ -14,11 +22,13 @@ const Navbar = () => {
   return (
     <div className='navbarContainer'>
     <nav>
-        <div className = 'navbarOptions' id='option01' onClick = {() => handleClick('option01')}  style = {{borderBottom : clickedItemId === 'option01' ?  '5px solid black': ''}}>Option 01</div>
-        <div className = 'navbarOptions' id='option02' onClick = {() => handleClick('option02')}  style = {{borderBottom : clickedItemId === 'option02' ?  '5px solid black': ''}}>Option 02</div>
-        <div className = 'navbarOptions' id='option03' onClick = {() => handleClick('option03')}  style = {{borderBottom : clickedItemId === 'option03' ?  '5px solid black': ''}}>Option 03</div>
-        <div className = 'navbarOptions' id='option04' onClick = {() => handleClick('option04')}  style = {{borderBottom : clickedItemId === 'option04' ?  '5px solid black': ''}}>Option 04</div>
-        <div className = 'navbarOptions' id='option05' onClick = {() => handleClick('option05')}  style = {{borderBottom : clickedItemId === 'option05' ?  '5px solid black': ''}}>Option 05</div>
+        {
+            data.map((item) => {
+                return(
+                    <div className = 'navbarOptions' id= {item.id} onClick = {() => handleClick(item.id)}  style = {{borderBottom : clickedItemId === item.id ?  '5px solid black': ''}}>{item.title}</div>
+                )
+            })
+        }
     </nav>
     </div>
   )
