@@ -32,7 +32,7 @@ nav{
 }
 .sandwichOptionContainer{
     position: absolute;
-    margin-top: 12%;
+    margin-top: 7vh;
 }
 .sandwichOption{
  border: 1px solid gray;
