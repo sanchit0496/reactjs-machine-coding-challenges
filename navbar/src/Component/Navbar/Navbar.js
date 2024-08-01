@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [clickedItemId, setClickedItemId] = useState(0);
     const [sandwichClicked, setSandwichClicked] = useState(false)
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 460);
 
+    const updateIsMobile = () => {
+        setIsMobile(window.innerWidth < 460);
+    };
+
+    useEffect(() => {
+      window.addEventListener('resize', updateIsMobile)
+      return () => window.removeEventListener('resize', updateIsMobile)
+    }, [])
+    console.log('isMobile', isMobile)
+    
   const data = [
     { id: "option01", title: "Option 01" },
     { id: "option02", title: "Option 02" },
