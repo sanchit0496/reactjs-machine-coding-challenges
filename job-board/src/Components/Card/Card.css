@@ -1,0 +1,21 @@
+.user-card{
+    background-color: whitesmoke;
+    border: 5px solid lightgray;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+}
+img{
+    border-radius: 50%;
+}
+.right-side{
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.description{
+    padding: 5px;
+    text-align: left;
+}
