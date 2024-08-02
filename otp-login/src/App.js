@@ -15,7 +15,7 @@ function App() {
       return;
     } else if (activeIndex < otpArray.length) {
       const newUserInput = [...userInput];
-      newUserInput[index] = value;
+      newUserInput[index] = e.target.value;
       setUserInput(newUserInput);
       setActiveIndex((prev) => prev + 1);
     }
