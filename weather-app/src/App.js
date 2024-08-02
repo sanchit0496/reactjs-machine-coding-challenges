@@ -1,7 +1,12 @@
 import "./App.css";
 import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
+
+  const [dataFetched, setDataFetched] = useState(false)
+  const [response, setResponse] = useState(null)
+
   useEffect(() => {
     const getWeatherData = () => {
       fetch(
@@ -10,13 +15,23 @@ function App() {
         .then((response) => response.json())
         .then((result) => {
           console.log("result", result);
+          setResponse(result)
+          setDataFetched(true)
         });
     };
 
     getWeatherData();
   }, []);
 
-  return <div className="App">Hello</div>;
+  return (
+    <div>
+      {dataFetched ? 
+        <div>{response.name}</div> 
+        : 
+        <div>Loading</div>
+        }
+      </div>
+  )
 }
 
 export default App;
