@@ -31,15 +31,10 @@ function App() {
 
   return (
     <div className="App">
-      {submitClicked ?
       <div className='user-input-and-calc'>
-         {result}
+         {submitClicked ? result : userInput}
       </div>
-      :
-      <div className='user-input-and-calc'>
-         {userInput}
-      </div>
-      }
+      
       <div className='number-holder'>
       {
         numbers.map((item) => {
