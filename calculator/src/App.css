@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  padding: 50px
+}
+
+.number-holder{
+  display: grid;
+  grid-template-columns: repeat(3,1fr); 
+}
+
+.expression-holder{
+  display: grid;
+  grid-template-columns: repeat(2,1fr); 
+}
+
+.user-input-and-calc{
+  
+}
