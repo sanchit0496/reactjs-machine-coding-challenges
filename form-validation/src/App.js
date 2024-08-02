@@ -27,16 +27,30 @@ function App() {
     };
 
     if (userInput.firstName.length < 5) {
-      errorObj.firstName = "Please enter longer value";
+      errorObj.firstName = "Please enter a longer value";
     } else {
       errorObj.firstName = "";
     }
 
     if (userInput.lastName.length < 2) {
-      errorObj.lastName = "Please enter longer value";
+      errorObj.lastName = "Please enter a longer value";
     } else {
       errorObj.lastName = "";
     }
+
+    if (userInput.mobile.length !== 10 || isNaN(userInput.mobile)) {
+      errorObj.mobile = "Please enter a valid 10-digit mobile number";
+    } else {
+      errorObj.mobile = "";
+    }
+
+
+    if (userInput.password.length < 8) {
+      errorObj.password = "Please enter a password with at least 8 characters";
+    } else {
+      errorObj.password = "";
+    }
+
 
     setErrors(errorObj);
 
@@ -54,15 +68,15 @@ function App() {
 
     let isValid = isValidValue();
     if (isValid) {
-      console.log("okay");
+      console.log("Form is valid");
     } else {
-      console.log("error");
+      console.log("Form has errors");
     }
   };
 
   return (
     <div className="App">
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputComponent
           name="First Name"
           type="text"
@@ -77,7 +91,21 @@ function App() {
           error={errors.lastName}
         />
 
-        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+        <InputComponent
+          name="Mobile"
+          type="text"
+          onChange={(e) => handleUserInput(e, "mobile")}
+          error={errors.mobile}
+        />
+
+        <InputComponent
+          name="Password"
+          type="password"
+          onChange={(e) => handleUserInput(e, "password")}
+          error={errors.password}
+        />
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
