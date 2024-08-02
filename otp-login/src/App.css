@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+.otp-holder{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.digit{
+  margin: 20px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid gray;
+}
