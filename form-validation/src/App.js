@@ -18,29 +18,29 @@ function App() {
     password: "",
   });
 
-  const errorObj = {
-    firstName: "",
-    lastName: "",
-    mobile: "",
-    password: "",
-  };
-
   const isValidValue = () => {
+    const errorObj = {
+      firstName: "",
+      lastName: "",
+      mobile: "",
+      password: "",
+    };
+
     if (userInput.firstName.length < 5) {
       errorObj.firstName = "Please enter longer value";
-      return false;
-    }else{
+    } else {
       errorObj.firstName = "";
     }
 
     if (userInput.lastName.length < 2) {
       errorObj.lastName = "Please enter longer value";
-      return false;
-    }else{
+    } else {
       errorObj.lastName = "";
     }
 
-    return true;
+    setErrors(errorObj);
+
+    return !Object.values(errorObj).some((error) => error !== "");
   };
 
   const handleUserInput = (e, type) => {
@@ -56,10 +56,9 @@ function App() {
     if (isValid) {
       console.log("okay");
     } else {
-      setErrors(errorObj);
+      console.log("error");
     }
   };
-
 
   return (
     <div className="App">
