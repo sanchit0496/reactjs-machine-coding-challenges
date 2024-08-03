@@ -1,47 +1,62 @@
-import React, { useState } from 'react'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 
 const App = () => {
-  const data = [0,1,2,3,4,5]
+  const data = [
+    { id: 1, text: "Div 01" },
+    { id: 2, text: "Div 02" },
+    { id: 3, text: "Div 03" },
+    { id: 4, text: "Div 04" },
+    { id: 5, text: "Div 05" },
+  ];
 
-  const [draggedItem, setDraggedItem] = useState(null)
+  const [items, setItems] = useState(data);
+  const [draggedItem, setDraggedItem] = useState(null);
 
-  const handleDrag = (e, item) => {
-    console.log('handleDrag', e.dataTransfer, item)
-    // e.dataTransfer.effectAllowed = 'move'
-    setDraggedItem(item)
-  }
-  console.log('draggedItem', draggedItem)
+  const handleDrag = (e, index) => {
+    e.dataTransfer.effectAllowed = "move";
+    setDraggedItem(index);
+  };
 
-  const handleDragEnd = (e,item) => {
-    console.log('handleDragEnd', item)
-    setDraggedItem(null)
-  }
+  const handleDragEnd = () => {
+    setDraggedItem(null);
+  };
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
-  const handleDragOver = (e,item) => {
-    console.log('handleDragOver', item)
-  }
+  const handleDrop = (e, index) => {
+    e.preventDefault();
+    const draggedOverItem = items[index];
+    if (draggedItem === index) return;
+
+    let newItems = items.filter((item, idx) => idx !== draggedItem);
+    newItems.splice(index, 0, items[draggedItem]);
+
+    setItems(newItems);
+  };
+  console.log("items", items);
 
   return (
     <div>
       App
-      {
-        data.map((item) => {
-          return(
-            <div 
-              id = {item} 
-              className='drag-item'
-              onDragStart={(e) => handleDrag(e, item)} 
-              onDragEnd = {(e) => handleDragEnd(e, item)}
-              onDragOver = {(e) => handleDragOver(e, item)}
-            >
-              {`Div ${item}`}
-            </div>
-          )
-        })
-      }
+      {items.map((item, index) => {
+        return (
+          <div
+            id={item.id}
+            className="drag-item"
+            draggable
+            onDragStart={(e) => handleDrag(e, index)}
+            onDragEnd={handleDragEnd}
+            onDragOver={(e) => handleDragOver(e, index)}
+            onDrop={(e) => handleDrop(e, index)}
+          >
+            {item.text}
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
