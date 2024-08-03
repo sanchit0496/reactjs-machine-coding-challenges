@@ -11,8 +11,10 @@ function App() {
   const { secondsLeft } = useTimer(
     hoursEntered,
     minutesEntered,
-    secondsEntered
+    secondsEntered,
+    started
   );
+  console.log('component secondsLeft', secondsLeft)
 
   const handleStart = () => {
     setStarted(true);
@@ -20,26 +22,31 @@ function App() {
 
   const handleReset = () => {
     setStarted(false);
+    setHoursEntered(0)
+    setMinutesEntered(0)
     setSecondsEntered(0);
   };
 
   const handleUserInput = (e, type) => {
-    if (isNaN(Number(e.target.value))) {
+    let valueEntered = Number(e.target.value)
+    if (isNaN(valueEntered)) {
       setSecondsEntered(0);
-    } else if (type === "seconds" && !isNaN(Number(e.target.value))) {
+    } else if (type === "seconds" && !isNaN(valueEntered)) {
       setSecondsEntered(e.target.value);
-    } else if (type === "minutes" && !isNaN(Number(e.target.value))) {
+    } else if (type === "minutes" && !isNaN(valueEntered)) {
       setMinutesEntered(e.target.value);
-    } else if (type === "hours" && !isNaN(Number(e.target.value))) {
+    } else if (type === "hours" && !isNaN(valueEntered)) {
       setHoursEntered(e.target.value);
     }
   };
 
   return (
     <div className="App">
-      {started && secondsLeft > 0 ? (
+      {started  ? (
         <>
-          Seconds Left: {secondsLeft}
+          Hours Left: {Math.floor(secondsLeft / 3600)} <br/><br/>
+          Minutes Left: {Math.floor((secondsLeft % 3600) / 60)} <br/><br/>
+          Seconds Left: {(secondsLeft % 60)} <br/><br/>
           <button onClick={() => handleReset()}>Reset</button>
         </>
       ) : (

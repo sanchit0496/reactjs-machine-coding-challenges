@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 
-const useTimer = (hoursEntered, minutesEntered, secondsEntered) => {
-    console.log('hoursEntered, minutesEntered, secondsEntered', hoursEntered, minutesEntered, secondsEntered)
-  const [secondsLeft, setSecondsLeft] = useState(secondsEntered);
+const useTimer = (hoursEntered, minutesEntered, secondsEntered, started) => {
+  let totalSecondsInput =
+    Number(secondsEntered) +
+    Number(minutesEntered * 60) +
+    Number(hoursEntered * 3600);
+  console.log("totalSecondsInput", totalSecondsInput);
+  console.log('started', started)
+  const [secondsLeft, setSecondsLeft] = useState(totalSecondsInput);
 
   useEffect(() => {
-    if (secondsEntered === 0) return;
-    setSecondsLeft(secondsEntered);
+    if (!started) return;
+
+    setSecondsLeft(totalSecondsInput);
     let interval = setInterval(() => {
       setSecondsLeft((prev) => {
         if (prev === 1) {
@@ -17,7 +23,7 @@ const useTimer = (hoursEntered, minutesEntered, secondsEntered) => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [secondsEntered]);
+  }, [totalSecondsInput, started]);
 
   return {
     secondsLeft,
