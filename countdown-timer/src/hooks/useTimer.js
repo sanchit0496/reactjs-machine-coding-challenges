@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useTimer = (start) => {
-  const [secondsLeft, setSecondsLeft] = useState(start);
+const useTimer = (hoursEntered, minutesEntered, secondsEntered) => {
+    console.log('hoursEntered, minutesEntered, secondsEntered', hoursEntered, minutesEntered, secondsEntered)
+  const [secondsLeft, setSecondsLeft] = useState(secondsEntered);
 
   useEffect(() => {
-    if (start === 0) return;
-    setSecondsLeft(start);
+    if (secondsEntered === 0) return;
+    setSecondsLeft(secondsEntered);
     let interval = setInterval(() => {
       setSecondsLeft((prev) => {
         if (prev === 1) {
@@ -16,7 +17,7 @@ const useTimer = (start) => {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [start]);
+  }, [secondsEntered]);
 
   return {
     secondsLeft,
