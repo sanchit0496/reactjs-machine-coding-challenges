@@ -1,15 +1,18 @@
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import About from './Pages/About';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import { ThemeProvider } from "./Context/ThemeContext";
 
 function App() {
   return (
     <>
-    <Routes>
-      <Route path = '/' Component= {Home} />
-      <Route path = '/about' Component= {About} />
-    </Routes>
+      <ThemeProvider>
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/about" Component={About} />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 }
