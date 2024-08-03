@@ -21,9 +21,8 @@ function App() {
   }
 
   const handleUserInput = (e, type) => {
-    console.log('isNaN(Number(e.target.value))', isNaN(Number(e.target.value)))
     if(isNaN(Number(e.target.value))){
-      return
+      setSecondsEntered(0)
     }
     else if(type === 'seconds' && !isNaN(Number(e.target.value))){
       console.log('e.target.value', e.target.value) 
@@ -43,10 +42,10 @@ function App() {
       <>
        <label>Seconds</label>
        <input value={secondsEntered} type='text' onChange={(e) => handleUserInput(e, 'seconds')} />
+       <button onClick={() => handleStart()}>Start</button>
       </>
       }
 
-      <button onClick={() => handleStart()}>Start</button>
     </div>
   );
 }
