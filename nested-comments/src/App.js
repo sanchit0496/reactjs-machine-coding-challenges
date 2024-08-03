@@ -87,7 +87,7 @@ function App() {
             </div>
             <div className="single-comment">
               {post.comments.map((comment) => {
-                return <div>{comment.commentData}</div>;
+                return <div  key={comment.id}>{comment.commentData}</div>;
               })}
             </div>
           </div>
