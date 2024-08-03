@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+}
+
+.config-section{
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 25px;
+}
