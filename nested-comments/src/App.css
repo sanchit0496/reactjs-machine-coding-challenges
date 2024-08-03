@@ -1,0 +1,16 @@
+.App {
+  text-align: left;
+}
+
+.single-post{
+  margin: 20px;
+}
+.single-post-header{
+  background-color: rgb(197, 193, 193);
+  padding: 5px;
+  border-radius: 5px 5px 0px 0px;
+}
+.single-comment{
+  padding: 5px;
+  background-color: lightblue;
+}
