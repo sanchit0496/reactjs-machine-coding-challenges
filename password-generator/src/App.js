@@ -10,20 +10,78 @@ function App() {
     numbers: false,
   });
 
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  const specialChar = ["@", "#", "$", "%", "^"];
+  const lowercase = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+  const uppercase = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
   const onSliderChange = (e) => {
-    console.log("onSliderChange", e.target.value);
-    let newUserInput = {...userInput, ['length'] : e.target.value}
-    setUserInput(newUserInput)
+    let newUserInput = { ...userInput, ["length"]: e.target.value };
+    setUserInput(newUserInput);
   };
 
   const onCheckboxChange = (e, type) => {
-    console.log("onCheckboxChange", type, e.target.checked);
-    let newUserInput = {...userInput, [type] : e.target.checked}
-    console.log('newUserInput', newUserInput)
-    setUserInput(newUserInput)
+    let newUserInput = { ...userInput, [type]: e.target.checked };
+    setUserInput(newUserInput);
   };
-  console.log('userInput', userInput)
 
+  const generatePassword = () => {
+    console.log("userInput", userInput);
+  };
 
   return (
     <div className="App">
@@ -74,6 +132,7 @@ function App() {
           />
         </div>
       </div>
+      <button onClick={() => generatePassword()}>Generate Password</button>
     </div>
   );
 }
