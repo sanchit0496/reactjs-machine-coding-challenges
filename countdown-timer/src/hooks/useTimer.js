@@ -4,7 +4,7 @@ const useTimer = (start) => {
   const [secondsLeft, setSecondsLeft] = useState(start);
 
   useEffect(() => {
-    if (start === null) return;
+    if (start === 0) return;
     setSecondsLeft(start);
     let interval = setInterval(() => {
       setSecondsLeft((prev) => {

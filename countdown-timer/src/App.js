@@ -7,7 +7,7 @@ function App() {
   const [started, setStarted] = useState(false)
   const [secondsEntered, setSecondsEntered] = useState(0)
 
-  const {secondsLeft} = useTimer(started ? secondsEntered : null)
+  const {secondsLeft} = useTimer(started ? secondsEntered : 0)
 
   console.log('secondsLeft',secondsLeft)
 
@@ -15,8 +15,17 @@ function App() {
     setStarted(true)
   }
 
+  const handleReset = () => {
+    setStarted(false)
+    setSecondsEntered(0)
+  }
+
   const handleUserInput = (e, type) => {
-    if(type === 'seconds' && !isNaN(Number(e.target.value))){
+    console.log('isNaN(Number(e.target.value))', isNaN(Number(e.target.value)))
+    if(isNaN(Number(e.target.value))){
+      return
+    }
+    else if(type === 'seconds' && !isNaN(Number(e.target.value))){
       console.log('e.target.value', e.target.value) 
       setSecondsEntered(e.target.value)
     }
@@ -25,10 +34,15 @@ function App() {
   return (
     <div className="App">
      
-      {started ? `Seconds Left ${secondsLeft}` :
+      {started ? 
+      <>
+        Seconds Left: {secondsLeft} 
+        <button onClick={() => handleReset()}>Reset</button>
+      </>
+      :
       <>
        <label>Seconds</label>
-       <input type='text' onChange={(e) => handleUserInput(e, 'seconds')} />
+       <input value={secondsEntered} type='text' onChange={(e) => handleUserInput(e, 'seconds')} />
       </>
       }
 
