@@ -1,0 +1,18 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+
+.drag-item {
+  margin: 8px 0;
+  padding: 16px;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  text-align: center;
+}
+
+.draggable-item {
+  user-select: none;
+}
