@@ -50,7 +50,7 @@ function App() {
 
   const addPostComment = (post) => {
     setClickedPost(post);
-    posts.forEach((item) => {
+    data.forEach((item) => {
       if (item.id === post.id) {
         item.comments.push({
           id: item.comments.length + 1,
@@ -58,7 +58,7 @@ function App() {
         });
       }
     });
-    setData(posts);
+    setData(data);
     closePostComment()
   };
   console.log("data", data);
@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="App">
       Hello
-      {posts.map((post) => {
+      {data.map((post) => {
         return (
           <div className="single-post">
             <div className="single-post-header">
