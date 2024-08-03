@@ -10,9 +10,12 @@ function App() {
     numbers: false,
   });
 
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-  const specialChar = ["@", "#", "$", "%", "^"];
-  const lowercase = [
+  const [passwordString, setPasswordString] = useState('')
+  const [submitClicked, setSubmitClicked] = useState(false)
+
+  const numbersArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  const specialCharArr = ["@", "#", "$", "%", "^"];
+  const lowercaseArr = [
     "a",
     "b",
     "c",
@@ -40,7 +43,7 @@ function App() {
     "y",
     "z",
   ];
-  const uppercase = [
+  const uppercaseArr = [
     "A",
     "B",
     "C",
@@ -71,16 +74,38 @@ function App() {
 
   const onSliderChange = (e) => {
     let newUserInput = { ...userInput, ["length"]: e.target.value };
+    setSubmitClicked(false)
     setUserInput(newUserInput);
   };
 
   const onCheckboxChange = (e, type) => {
     let newUserInput = { ...userInput, [type]: e.target.checked };
+    setSubmitClicked(false)
     setUserInput(newUserInput);
   };
 
   const generatePassword = () => {
-    console.log("userInput", userInput);
+    let characterPool = [];
+    let {length, uppercase, lowercase, numbers, specialChar} = userInput
+    if(uppercase) characterPool.push(uppercaseArr)
+    if(lowercase) characterPool.push(lowercaseArr)
+    if(specialChar) characterPool.push(specialCharArr)
+    if(numbers) characterPool.push(numbersArr)
+
+    let characterPoolFlatList = characterPool.flat()
+
+    let characterPoolFlatListJumbled = []
+    for(let i =0; i < characterPoolFlatList.length; i++){
+      characterPoolFlatListJumbled[i] = characterPoolFlatList[Math.floor(Math.random() * characterPoolFlatList.length)]
+    }
+
+    let passwordString = []
+    while (length > 0) {
+      passwordString.push(characterPoolFlatListJumbled[Math.floor(Math.random() * characterPoolFlatList.length)])
+      length--;
+    }
+    setSubmitClicked(true)
+    setPasswordString(passwordString)
   };
 
   return (
@@ -93,7 +118,7 @@ function App() {
             type="range"
             name="length"
             min="1"
-            max="10"
+            max="20"
             value={userInput.length}
             onChange={(e) => onSliderChange(e)}
           />
@@ -133,6 +158,7 @@ function App() {
         </div>
       </div>
       <button onClick={() => generatePassword()}>Generate Password</button>
+      <div>{submitClicked && passwordString}</div>
     </div>
   );
 }
