@@ -36,11 +36,15 @@ function App() {
 
   return (
     <div className="App">
-      {activeData.map((data) => {
-        return <div>{data}</div>;
+      {activeData.map((data, index) => {
+        return <div key={index}>{data}</div>;
       })}
       {buttonList.map((item) => {
-        return <button onClick={() => handleClick(item)}>{item}</button>;
+        return (
+          <button key={item} onClick={() => handleClick(item)}>
+            {item + 1}
+          </button>
+        );
       })}
     </div>
   );
