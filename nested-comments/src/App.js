@@ -14,10 +14,17 @@ function App() {
         {
           id: 1,
           commentData: "Comment 01",
+          comments: [
+            {
+              id: 1,
+              commentData: "Reply 01"  
+            }
+          ],
         },
         {
           id: 2,
           commentData: "Comment 02",
+          comments: [],
         },
       ],
     },
@@ -28,25 +35,27 @@ function App() {
         {
           id: 1,
           commentData: "Comment 01",
+          comments: [],
         },
         {
           id: 2,
           commentData: "Comment 02",
+          comments: [],
         },
       ],
     },
   ];
 
   const [data, setData] = useState(posts);
-  const [addedText, setAddedText] = useState('')
+  const [addedText, setAddedText] = useState("");
 
   const clickPostComment = (post) => {
     setDisplayAddPostComment(true);
   };
 
   const handleInputChange = (e) => {
-    setAddedText(e.target.value)
-  }
+    setAddedText(e.target.value);
+  };
 
   const addPostComment = (post) => {
     setClickedPost(post);
@@ -59,11 +68,24 @@ function App() {
       }
     });
     setData(data);
-    closePostComment()
+    closePostComment();
   };
   console.log("data", data);
   const closePostComment = (post) => {
     setDisplayAddPostComment(false);
+  };
+
+  const renderAllComments = (comments) => {
+    console.log("renderAllComments", comments);
+    return (
+      <div>
+        {comments.map((comment) => {
+          return <div key={comment.id}>
+            {comment.commentData}
+            </div>;
+        })}
+      </div>
+    );
   };
   return (
     <div className="App">
@@ -85,11 +107,7 @@ function App() {
                 </>
               )}
             </div>
-            <div className="single-comment">
-              {post.comments.map((comment) => {
-                return <div  key={comment.id}>{comment.commentData}</div>;
-              })}
-            </div>
+            <div className="comment-box">{renderAllComments(post.comments)}</div>
           </div>
         );
       })}
