@@ -70,28 +70,25 @@ function App() {
     setData(data);
     closePostComment();
   };
-  console.log("clickedPost", clickedPost);
   const closePostComment = (post) => {
     setClickedPost(null);
   };
 
   const handleClickComment = (e, comment) => {
-    console.log("clicked comment", comment);
     setClickedComment(comment);
   };
 
-  const addCommentReply = (comment) => {
+  const addCommentReply = (postId, comment) => {
     console.log("addreply", comment);
+    console.log('postId',postId)
     setClickedComment(null);
   };
 
   const closeCommentReply = (comment) => {
-    console.log("addreply", comment);
     setClickedComment(null);
   };
 
-  const renderAllComments = (comments) => {
-    console.log("renderAllComments", comments);
+  const renderAllComments = (postId, comments) => {
     if (comments.length === 0) {
       return null;
     }
@@ -114,7 +111,7 @@ function App() {
               ) : (
                 <>
                   <input type="text" onChange={(e) => handleInputChange(e)} />
-                  <button onClick={() => addCommentReply(comment)}>Add</button>
+                  <button onClick={() => addCommentReply(postId,comment)}>Add</button>
                   <button onClick={() => closeCommentReply(comment)}>
                     Close
                   </button>
@@ -122,7 +119,7 @@ function App() {
               )}
 
               {comment?.comments?.length > 0 &&
-                renderAllComments(comment.comments)}
+                renderAllComments(postId, comment.comments)}
             </div>
           );
         })}
@@ -150,7 +147,7 @@ function App() {
               )}
             </div>
             <div className="comment-box">
-              {renderAllComments(post.comments)}
+              {renderAllComments(post.id, post.comments)}
             </div>
           </div>
         );
