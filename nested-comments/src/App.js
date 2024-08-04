@@ -6,7 +6,7 @@ function App() {
   const [clickedPost, setClickedPost] = useState(null);
   const [displayAddPostComment, setDisplayAddPostComment] = useState(false);
 
-  const posts = [
+ const posts = [
     {
       id: 1,
       postData: "Post 01",
@@ -17,7 +17,7 @@ function App() {
           comments: [
             {
               id: 1,
-              commentData: "Reply 01"  
+              commentData: "Reply 01"
             }
           ],
         },
@@ -77,11 +77,16 @@ function App() {
 
   const renderAllComments = (comments) => {
     console.log("renderAllComments", comments);
+    if(comments.length === 0){
+      return null
+    }
+   
     return (
       <div>
         {comments.map((comment) => {
           return <div key={comment.id}>
             {comment.commentData}
+            {comment?.comments?.length > 0 && renderAllComments(comment.comments)}
             </div>;
         })}
       </div>
