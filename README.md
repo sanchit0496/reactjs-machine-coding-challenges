@@ -46,7 +46,7 @@ This repository contains a collection of ReactJS machine coding questions with s
 To get started with these projects, clone the repository and navigate to the project folder.
 
 ```sh
-git clone https://github.com/sanchit0496/frontend_machine_coding_challenges.git
+git clone https://github.com/sanchit0496/reactjs_machine_coding_challenges.git
 cd repository-name
 # Navigate to individual project folders for specific instructions
 ```
