@@ -80,13 +80,13 @@ function App() {
     setClickedComment(comment);
   };
 
-  const addCommentReply = (post) => {
-    console.log("addreply", post);
+  const addCommentReply = (comment) => {
+    console.log("addreply", comment);
     setClickedComment(null);
   };
 
-  const closeCommentReply = (post) => {
-    console.log("addreply", post);
+  const closeCommentReply = (comment) => {
+    console.log("addreply", comment);
     setClickedComment(null);
   };
 
