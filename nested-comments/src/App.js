@@ -79,9 +79,20 @@ function App() {
   };
 
   const addCommentReply = (postId, comment) => {
-    console.log("addreply", comment);
-    console.log('postId',postId)
     setClickedComment(null);
+    let parentPost = data.filter((item) => item.id === postId);
+    console.log("parentPost", parentPost);
+
+    let parentComment = parentPost[0].comments.filter(
+      (item) => item.id === comment.id
+    );
+    console.log("parentComment", parentComment);
+    let newCommentObj = {
+      id: uuidv4(),
+      commentData: "Testing",
+      comments: [],
+    };
+    parentComment[0].comments.push(newCommentObj)
   };
 
   const closeCommentReply = (comment) => {
