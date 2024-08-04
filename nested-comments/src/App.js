@@ -64,6 +64,7 @@ function App() {
         item.comments.push({
           id: item.comments.length + 1,
           commentData: addedText,
+          comments: [],
         });
       }
     });
@@ -89,10 +90,10 @@ function App() {
     console.log("parentComment", parentComment);
     let newCommentObj = {
       id: uuidv4(),
-      commentData: "Testing",
+      commentData: addedText,
       comments: [],
     };
-    parentComment[0].comments.push(newCommentObj)
+    parentComment[0].comments.push(newCommentObj);
   };
 
   const closeCommentReply = (comment) => {
@@ -122,7 +123,9 @@ function App() {
               ) : (
                 <>
                   <input type="text" onChange={(e) => handleInputChange(e)} />
-                  <button onClick={() => addCommentReply(postId,comment)}>Add</button>
+                  <button onClick={() => addCommentReply(postId, comment)}>
+                    Add
+                  </button>
                   <button onClick={() => closeCommentReply(comment)}>
                     Close
                   </button>
