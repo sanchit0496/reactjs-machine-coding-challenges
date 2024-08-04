@@ -5,8 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [clickedPost, setClickedPost] = useState(null);
-  const [displayAddPostComment, setDisplayAddPostComment] = useState(false);
-
+  const [clickedComment, setClickedComment] = useState(null);
   const posts = [
     {
       id: uuidv4(),
@@ -76,6 +75,21 @@ function App() {
     setClickedPost(null);
   };
 
+  const handleClickComment = (e, comment) => {
+    console.log("clicked comment", comment);
+    setClickedComment(comment);
+  };
+
+  const addCommentReply = (post) => {
+    console.log("addreply", post);
+    setClickedComment(null);
+  };
+
+  const closeCommentReply = (post) => {
+    console.log("addreply", post);
+    setClickedComment(null);
+  };
+
   const renderAllComments = (comments) => {
     console.log("renderAllComments", comments);
     if (comments.length === 0) {
@@ -92,9 +106,20 @@ function App() {
               style={{ marginLeft: "20px" }}
             >
               {comment.commentData}
-              <input type="text" onChange={(e) => handleInputChange(e)} />
-              <button>Add</button>
-              <button>Close</button>
+
+              {clickedComment?.id !== comment.id ? (
+                <button onClick={(e) => handleClickComment(e, comment)}>
+                  Add Reply
+                </button>
+              ) : (
+                <>
+                  <input type="text" onChange={(e) => handleInputChange(e)} />
+                  <button onClick={() => addCommentReply(comment)}>Add</button>
+                  <button onClick={() => closeCommentReply(comment)}>
+                    Close
+                  </button>
+                </>
+              )}
 
               {comment?.comments?.length > 0 &&
                 renderAllComments(comment.comments)}
