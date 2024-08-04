@@ -80,21 +80,44 @@ function App() {
     setClickedComment(comment);
   };
 
-  const addCommentReply = (postId, comment) => {
-    setClickedComment(null);
-    let parentPost = data.filter((item) => item.id === postId);
-    console.log("parentPost", parentPost);
+  const addNestedReply = (comments, inputComment) => {
+    console.log('inputComment', inputComment)
+    return comments.map((comment) => {
+      if (comment.id === inputComment.id) {
+        return {
+          ...comment,
+          comments: [
+            ...comment.comments,
+            {
+              id: uuidv4(),
+              commentData: addedText,
+              comments: [],
+            },
+          ],
+        };
+      }
+      if (comment.comments.length > 0) {
+        return {
+          ...comment,
+          comments: addNestedReply(comment.comments, inputComment),
+        };
+      }
+      return comment;
+    });
+  };
 
-    let parentComment = parentPost[0].comments.filter(
-      (item) => item.id === comment.id
-    );
-    console.log("parentComment", parentComment);
-    let newCommentObj = {
-      id: uuidv4(),
-      commentData: addedText,
-      comments: [],
-    };
-    parentComment[0].comments.push(newCommentObj);
+  const addCommentReply = (postId, comment) => {
+    let newData = data.map((post) => {
+      if(post.id === postId){
+        return{
+        ...post,
+         comments: addNestedReply(post.comments, comment)
+        }
+      }
+      return post;
+    })
+    setClickedComment(null);
+    setData(newData)
   };
 
   const closeCommentReply = (comment) => {
