@@ -60,18 +60,26 @@ function App() {
 
   const addPostComment = (post) => {
     setClickedPost(post);
-    data.forEach((item) => {
+    const newData = data.map((item) => {
       if (item.id === post.id) {
-        item.comments.push({
-          id: item.comments.length + 1,
-          commentData: addedText,
-          comments: [],
-        });
+        return {
+          ...item,
+          comments: [
+            ...item.comments,
+            {
+              id: uuidv4(),
+              commentData: addedText,
+              comments: [],
+            },
+          ],
+        };
       }
+      return item;
     });
-    setData(data);
+    setData(newData);
     closePostComment();
   };
+  
   const closePostComment = (post) => {
     setClickedPost(null);
   };
