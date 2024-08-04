@@ -18,6 +18,7 @@ function App() {
             {
               id: uuidv4(),
               commentData: "Reply 01",
+              comments: []
             },
           ],
         },
