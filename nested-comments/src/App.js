@@ -1,44 +1,45 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [clickedPost, setClickedPost] = useState(null);
   const [displayAddPostComment, setDisplayAddPostComment] = useState(false);
 
- const posts = [
+  const posts = [
     {
-      id: 1,
+      id: uuidv4(),
       postData: "Post 01",
       comments: [
         {
-          id: 1,
+          id: uuidv4(),
           commentData: "Comment 01",
           comments: [
             {
-              id: 1,
-              commentData: "Reply 01"
-            }
+              id: uuidv4(),
+              commentData: "Reply 01",
+            },
           ],
         },
         {
-          id: 2,
+          id: uuidv4(),
           commentData: "Comment 02",
           comments: [],
         },
       ],
     },
     {
-      id: 2,
+      id: uuidv4(),
       postData: "Post 02",
       comments: [
         {
-          id: 1,
+          id: uuidv4(),
           commentData: "Comment 01",
           comments: [],
         },
         {
-          id: 2,
+          id: uuidv4(),
           commentData: "Comment 02",
           comments: [],
         },
@@ -50,7 +51,7 @@ function App() {
   const [addedText, setAddedText] = useState("");
 
   const clickPostComment = (post) => {
-    setDisplayAddPostComment(true);
+    setClickedPost(post);
   };
 
   const handleInputChange = (e) => {
@@ -70,24 +71,35 @@ function App() {
     setData(data);
     closePostComment();
   };
-  console.log("data", data);
+  console.log("clickedPost", clickedPost);
   const closePostComment = (post) => {
-    setDisplayAddPostComment(false);
+    setClickedPost(null);
   };
 
   const renderAllComments = (comments) => {
     console.log("renderAllComments", comments);
-    if(comments.length === 0){
-      return null
+    if (comments.length === 0) {
+      return null;
     }
-   
+
     return (
       <div>
         {comments.map((comment) => {
-          return <div key={comment.id} className = 'single-comment' style = {{marginLeft: '20px'}}>
-            {comment.commentData}
-            {comment?.comments?.length > 0 && renderAllComments(comment.comments)}
-            </div>;
+          return (
+            <div
+              key={comment.id}
+              className="single-comment"
+              style={{ marginLeft: "20px" }}
+            >
+              {comment.commentData}
+              <input type="text" onChange={(e) => handleInputChange(e)} />
+              <button>Add</button>
+              <button>Close</button>
+
+              {comment?.comments?.length > 0 &&
+                renderAllComments(comment.comments)}
+            </div>
+          );
         })}
       </div>
     );
@@ -100,7 +112,7 @@ function App() {
           <div className="single-post">
             <div className="single-post-header">
               {post.postData}
-              {!displayAddPostComment ? (
+              {clickedPost?.id !== post.id ? (
                 <button onClick={() => clickPostComment(post)}>
                   Add Comment
                 </button>
@@ -112,7 +124,9 @@ function App() {
                 </>
               )}
             </div>
-            <div className="comment-box">{renderAllComments(post.comments)}</div>
+            <div className="comment-box">
+              {renderAllComments(post.comments)}
+            </div>
           </div>
         );
       })}
