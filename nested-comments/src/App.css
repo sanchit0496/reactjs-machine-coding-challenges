@@ -14,3 +14,10 @@
   padding: 5px;
   background-color: lightblue;
 }
+.single-comment{
+  background-color: lightgray;
+  border: 1px solid gray;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}

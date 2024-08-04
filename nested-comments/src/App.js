@@ -84,7 +84,7 @@ function App() {
     return (
       <div>
         {comments.map((comment) => {
-          return <div key={comment.id}>
+          return <div key={comment.id} className = 'single-comment' style = {{marginLeft: '20px'}}>
             {comment.commentData}
             {comment?.comments?.length > 0 && renderAllComments(comment.comments)}
             </div>;
