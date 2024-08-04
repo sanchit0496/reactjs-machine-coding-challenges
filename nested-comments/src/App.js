@@ -79,7 +79,7 @@ function App() {
     setData(newData);
     closePostComment();
   };
-  
+
   const closePostComment = (post) => {
     setClickedPost(null);
   };
@@ -88,31 +88,44 @@ function App() {
     setClickedComment(comment);
   };
 
-  const addNestedReply = (comments, inputComment) => {
-    console.log('inputComment', inputComment)
-    return comments.map((comment) => {
-      if (comment.id === inputComment.id) {
-        return {
-          ...comment,
-          comments: [
-            ...comment.comments,
-            {
-              id: uuidv4(),
-              commentData: addedText,
-              comments: [],
-            },
-          ],
-        };
-      }
-      if (comment.comments.length > 0) {
-        return {
-          ...comment,
-          comments: addNestedReply(comment.comments, inputComment),
-        };
-      }
-      return comment;
-    });
-  };
+ const addNestedReply = (comments, inputComment) => {
+  // Base condition: If there are no comments, return an empty array
+  if (comments.length === 0) {
+    return [];
+  }
+  console.log('comments', comments)
+  console.log('inputComment', inputComment)
+
+  // Iterate over each comment
+  return comments.map((comment) => {
+    // If the comment matches the input comment, add a new reply
+    if (comment.id === inputComment.id) {
+      return {
+        ...comment,
+        comments: [
+          ...comment.comments,
+          {
+            id: uuidv4(),
+            commentData: addedText,
+            comments: [],
+          },
+        ],
+      };
+    }
+
+    // Recursively check nested comments
+    if (comment.comments.length > 0) {
+      return {
+        ...comment,
+        comments: addNestedReply(comment.comments, inputComment),
+      };
+    }
+
+    // If no match and no nested comments, return the comment as is
+    return comment;
+  });
+};
+
 
   const addCommentReply = (postId, comment) => {
     let newData = data.map((post) => {
