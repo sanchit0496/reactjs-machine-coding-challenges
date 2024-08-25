@@ -42,7 +42,6 @@ function App() {
 
       if (tempX.length >= 3) {
         let didWin = checkWins(tempX);
-        console.log("didWin", didWin);
       }
     } else {
       let tempO = [...oInput, i];
@@ -50,14 +49,9 @@ function App() {
 
       if (tempO.length >= 3) {
         let didWin = checkWins(tempO);
-        console.log("didWin", didWin);
       }
     }
   };
-
-  console.log("xInput", xInput);
-  console.log("oInput", oInput);
-  console.log("xTurn", xTurn);
 
   const renderBoardValue = (i) => {
     if (xInput.includes(i)) {
