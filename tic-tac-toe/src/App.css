@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.board-holder{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.box{
+  border: 1px solid gray;
+  margin: 2px; 
+  padding: 25px;
+  cursor: pointer;
+}
