@@ -41,6 +41,7 @@ This repository contains a collection of ReactJS machine coding questions with s
 | dropdown-component            | Dropdown menu for selecting options.                            |
 | form-validation               | Form validation with error messages.                           |
 | grid-lights                   | Interactive grid of lights that can be toggled.                               |
+| tic-tac-toe                | A multiplayer tic-tac-toe game.                               |
 
 ## Installation
 To get started with these projects, clone the repository and navigate to the project folder.
