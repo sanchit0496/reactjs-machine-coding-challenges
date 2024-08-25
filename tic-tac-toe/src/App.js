@@ -54,9 +54,11 @@ function App() {
           setXInput([])
           setOInput([])
         }
-      }
+      }      
     }
   };
+
+  console.log(xInput, oInput)
 
   const renderBoardValue = (i) => {
     if (xInput.includes(i)) {
