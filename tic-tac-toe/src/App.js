@@ -1,8 +1,11 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 
 function App() {
   const NUMBER_OF_BOXES = 9;
+  const [xTurn, setXTurn] = useState(true)
+  const [xInput, setXInput] = useState([])
+  const [oInput, setOInput] = useState([])
 
   const winnings = [
     [0, 1, 2],
@@ -14,9 +17,6 @@ function App() {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
-  const userX = [];
-  const userO = [];
 
   const checkWins = (array) => {
     let didWin = false;
@@ -33,14 +33,15 @@ function App() {
   };
 
   const handleClick = (i) => {
-    console.log(i);
-    userX.push(i);
-    console.log(userX);
-    if (userX.length >= 3) {
-      let didWin = checkWins(userX);
+    let tempX = [...xInput, i]
+    setXInput(tempX)
+    if (tempX.length >= 3) {
+      let didWin = checkWins(tempX);
       console.log("didWin", didWin);
     }
   };
+
+  console.log('xInput', xInput)
 
   const renderBoard = () => {
     let arr = [];
