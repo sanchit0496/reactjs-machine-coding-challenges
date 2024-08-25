@@ -73,7 +73,9 @@ function App() {
     for (let i = 0; i < NUMBER_OF_BOXES; i++) {
       arr.push(
         <div onClick={() => handleClick(i)} className="box" key={i}>
-          {renderBoardValue(i)}
+          <div className="board-value">
+            {renderBoardValue(i)}
+          </div>
         </div>
       );
     }
