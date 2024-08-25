@@ -19,21 +19,13 @@ function App() {
   ];
 
   const checkWins = (array) => {
-    let didWin = false;
-    winnings.forEach((item) => {
-      if (
-        item[0] === array[0] &&
-        item[1] === array[1] &&
-        item[2] === array[2]
-      ) {
-        didWin = true;
-        alert("win");
-      }
-    });
-    return didWin;
+    return winnings.some((item) => {
+      return item.every((index) => array.includes(index))
+    })
   };
 
   const handleClick = (i) => {
+    if (xInput.includes(i) || oInput.includes(i)) return;
     setXTurn(!xTurn);
 
     if (xTurn) {
@@ -42,6 +34,13 @@ function App() {
 
       if (tempX.length >= 3) {
         let didWin = checkWins(tempX);
+        console.log('didWin', didWin)
+
+        if(didWin){
+          alert('win')
+          setXInput([])
+          setOInput([])
+        }
       }
     } else {
       let tempO = [...oInput, i];
@@ -49,6 +48,12 @@ function App() {
 
       if (tempO.length >= 3) {
         let didWin = checkWins(tempO);
+        console.log('didWin', didWin)
+        if(didWin){
+          alert('win')
+          setXInput([])
+          setOInput([])
+        }
       }
     }
   };
