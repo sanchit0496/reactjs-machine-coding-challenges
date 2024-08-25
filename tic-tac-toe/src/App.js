@@ -6,6 +6,7 @@ function App() {
   const [xTurn, setXTurn] = useState(true);
   const [xInput, setXInput] = useState([]);
   const [oInput, setOInput] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
   const winnings = [
     [0, 1, 2],
@@ -20,13 +21,12 @@ function App() {
 
   const checkWins = (array) => {
     return winnings.some((item) => {
-      return item.every((index) => array.includes(index))
-    })
+      return item.every((index) => array.includes(index));
+    });
   };
 
   const handleClick = (i) => {
-    if (xInput.includes(i) || oInput.includes(i)) return;
-    setXTurn(!xTurn);
+    if (xInput.includes(i) || oInput.includes(i) || gameOver) return;
 
     if (xTurn) {
       let tempX = [...xInput, i];
@@ -34,12 +34,9 @@ function App() {
 
       if (tempX.length >= 3) {
         let didWin = checkWins(tempX);
-        console.log('didWin', didWin)
-
-        if(didWin){
-          alert('win')
-          setXInput([])
-          setOInput([])
+        if (didWin) {
+          alert('X wins!');
+          setGameOver(true);
         }
       }
     } else {
@@ -48,23 +45,33 @@ function App() {
 
       if (tempO.length >= 3) {
         let didWin = checkWins(tempO);
-        console.log('didWin', didWin)
-        if(didWin){
-          alert('win')
-          setXInput([])
-          setOInput([])
+        if (didWin) {
+          alert('O wins!');
+          setGameOver(true);
         }
-      }      
+      }
     }
+
+    if (xInput.length + oInput.length + 1 === NUMBER_OF_BOXES && !gameOver) {
+      alert("It's a draw!");
+      setGameOver(true);
+    }
+
+    setXTurn(!xTurn);
   };
 
-  console.log(xInput, oInput)
+  const resetGame = () => {
+    setXInput([]);
+    setOInput([]);
+    setXTurn(true);
+    setGameOver(false);
+  };
 
   const renderBoardValue = (i) => {
     if (xInput.includes(i)) {
       return "X";
     } else if (oInput.includes(i)) {
-      return "0";
+      return "O";
     }
     return "";
   };
@@ -87,6 +94,7 @@ function App() {
     <div className="App">
       TicTacToe
       <div className="board-holder">{renderBoard()}</div>
+      {gameOver && <button onClick={resetGame}>Restart Game</button>}
     </div>
   );
 }
