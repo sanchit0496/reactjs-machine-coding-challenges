@@ -1,0 +1,18 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.product-list{
+  display: flex;
+  flex-wrap: wrap; 
+}
+ 
+.product-item{
+  background-color: whitesmoke;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  width: 100px;
+}

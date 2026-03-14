@@ -1,0 +1,16 @@
+.dd-item {
+    border: 1px solid grey;
+    margin: 20px;
+}
+
+.dd-title {
+    cursor: pointer;
+    background-color: whitesmoke; 
+    padding: 20px;
+}
+
+.dd-options {
+    background-color: antiquewhite;
+    padding: 10px;
+    border: 2px solid lightblue;
+}

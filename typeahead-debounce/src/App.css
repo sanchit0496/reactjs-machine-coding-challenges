@@ -1,0 +1,6 @@
+.list-item{
+  border: 1px solid gray;
+} 
+.active{
+  border: 3px solid blue; 
+}

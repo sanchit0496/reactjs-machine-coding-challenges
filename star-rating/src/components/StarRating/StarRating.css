@@ -1,0 +1,16 @@
+.holder{
+    display: flex;
+    flex-direction: row; 
+}
+.star{
+    padding: 10px;
+    font-size: 60px;
+    cursor: pointer;
+}
+.active{
+    color: orange;  
+    opacity: 0.2;
+}
+.clicked{
+    color: orange;  
+}

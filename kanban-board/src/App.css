@@ -1,0 +1,27 @@
+.board-holder{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+.board-section{
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+}
+.board-item{
+  background-color: peachpuff;
+  border: 1px solid gray;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 5px; 
+  height: 20px;
+  width: 80px;
+  cursor: grab;
+}
+.board-header{
+  font-size: 20px;
+  padding: 20px
+} 

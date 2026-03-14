@@ -1,0 +1,29 @@
+.stepper-container{
+    display: flex;
+    flex-direction: row;
+}
+.stepper-item{
+    margin: 10px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+}
+.stepper-loader{ 
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 50%;
+}
+.stepper-line{
+    height: 2px;
+    width: 100%;
+    background-color: grey;
+    margin-top: -50%;
+    margin-left: 20px;
+}
+.active-loader{
+    background-color: lightblue;
+}
+.active-line{
+    background-color: lightblue;
+} 

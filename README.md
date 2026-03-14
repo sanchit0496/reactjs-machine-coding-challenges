@@ -33,12 +33,13 @@ This repository contains a collection of ReactJS machine coding questions with s
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project List
+## Project List  
 
-| Project Name                  | Description                                  |
+
+| Project Name                  | Description                                                  |
 |-------------------------------|----------------------------------------------|
 | weather-app                   | Application to fetch and display weather information.              |
-| todo-list                     | Task management app with CRUD operations.                          |
+| todo-list                     | Task management app with CRUD operations.                      |
 | theme-mode                    | Toggle between light and dark themes.                     |
 | star-rating                   | Component for star-based rating system.                 |
 | snakeandladder-board          | Snake and ladder game board implementation.                      |
@@ -63,7 +64,16 @@ This repository contains a collection of ReactJS machine coding questions with s
 | dropdown-component            | Dropdown menu for selecting options.                            |
 | form-validation               | Form validation with error messages.                           |
 | grid-lights                   | Interactive grid of lights that can be toggled.                               |
-| tic-tac-toe                | A multiplayer tic-tac-toe game.                               |
+| tic-tac-toe                   | A multiplayer tic-tac-toe game.                               |
+| file-directory                | Recursive file and folder tree component.                    |
+| kanban-board                  | Drag and drop task management board like Trello.             |
+| multi-dropdown-component      | Dropdown menu with multiple selection capabilities.          |
+| shopping-cart                 | E-commerce shopping cart with state management.              |
+| stepper-component             | Multi-step progress indicator for forms and workflows.       |
+| typeahead-debounce            | Search autocomplete component with API debouncing.           |
+| undo-redo                     | State history management for undo and redo actions.          |
+| virtualized-list              | Efficient rendering of large data lists for performance.     |
+
 
 ## Installation
 To get started with these projects, clone the repository and navigate to the project folder.
