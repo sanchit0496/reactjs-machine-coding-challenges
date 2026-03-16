@@ -27,7 +27,8 @@ function App() {
   console.log(data)
   return (
     <div className="App">
-      <div  className = 'game-board'>
+      <div  className = 'game-board' 
+        style={{gridTemplateColumns: `repeat(${boardSize}, 1fr)`}}>
       {data.map((item) => {
         return(
           <div className='game-cell'>{item}</div>
